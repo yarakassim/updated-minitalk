@@ -25,7 +25,7 @@ void	send_byte(char byte)
 			kill(g_pid, SIGUSR1);
 		else
 			kill(g_pid, SIGUSR2);
-		usleep(42);
+		usleep(101);
 		count++;
 	}
 }
