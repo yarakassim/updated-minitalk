@@ -6,34 +6,40 @@
 #    By: ykassim- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 13:48:58 by ykassim-          #+#    #+#              #
-#    Updated: 2021/09/18 16:24:52 by ykassim-         ###   ########.fr        #
+#    Updated: 2021/11/16 12:22:29 by ykassim-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minitalk.a
+CLIENT		= client
 
-CC = clang
-CFLAGS = -Wall -Wextra -Werror
-AR = ar rcs
-RM = rm -rf
+SERVER		= server
 
-SRC =  server.c \
-	  client.c \
+SRC_CLIENT	= client.c
 
-OBJ = $(SRC:.c=.o)
+SRC_SERVER	= server.c
 
-$(NAME): $(OBJ)
-	$(AR) $@ $^
+OBJ_SERVER	= $(SRC_SERVER:.c=.o)
 
-.c.o: $(SRC)
-	$(CC) $(CFLAGS) -c -o $@ $<
+OBJ_CLIENT	= $(SRC_CLIENT:.c=.o)
 
-all : $(NAME)
+CC		= gcc
 
-clean :
-	$(RM) $(OBJ)
+CFLAGS	= -Wall -Wextra -Werror
 
-fclean : clean
-	$(RM) $(NAME)
+RM		= rm -f
 
-re : fclean all
+all:		$(CLIENT) $(SERVER)
+
+$(SERVER):	$(OBJ_SERVER)
+		$(CC) -o $(SERVER) $(OBJ_SERVER)
+
+$(CLIENT):	$(OBJ_CLIENT)
+		$(CC) -o $(CLIENT) $(OBJ_CLIENT)
+
+clean:
+		$(RM) $(OBJ_SERVER) $(OBJ_CLIENT)
+
+fclean:		clean
+		$(RM) $(SERVER) $(CLIENT)
+
+re:		fclean all
