@@ -6,7 +6,7 @@
 #    By: ykassim- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 13:48:58 by ykassim-          #+#    #+#              #
-#    Updated: 2021/11/16 12:22:29 by ykassim-         ###   ########.fr        #
+#    Updated: 2021/11/17 13:08:48 by ykassim-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ RM		= rm -f
 all:		$(CLIENT) $(SERVER)
 
 $(SERVER):	$(OBJ_SERVER)
-		$(CC) -o $(SERVER) $(OBJ_SERVER)
+		$(CC) $(CFLAGS) -o $(SERVER) $(OBJ_SERVER)
 
 $(CLIENT):	$(OBJ_CLIENT)
-		$(CC) -o $(CLIENT) $(OBJ_CLIENT)
+		$(CC) $(CFLAGS) -o $(CLIENT) $(OBJ_CLIENT)
 
 clean:
 		$(RM) $(OBJ_SERVER) $(OBJ_CLIENT)
